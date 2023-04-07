@@ -1,0 +1,17 @@
+.col-sidebar{
+    padding-left: 0px;
+    padding-right: 0px;
+    flex: 0 0 auto;
+    width: 250px;
+}
+
+.div_nav{
+    height: 100vh;
+}
+
+i{
+    padding-right: 10px;
+    font-size: 20px;
+}
+
+

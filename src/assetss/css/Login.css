@@ -1,0 +1,28 @@
+.img-login{
+  border-radius: 1rem 0 0 1rem;
+}
+
+.div-card{
+  border-block-color: rgba(var(--bs-dark-rgb),var(--bs-bg-opacity))t;
+  border-radius: 1rem;
+}
+
+.h5-text{
+  letter-spacing: 1px;
+}
+
+.card-body-form{
+  padding-top: 0px !important;
+}
+
+.alert-login{
+  margin-top: 5px;
+  width: 100%;
+  margin-bottom: 0px;
+}
+
+.spinner-login{
+  position: absolute;
+  margin-top: 8px;
+  margin-left: 15px;
+}

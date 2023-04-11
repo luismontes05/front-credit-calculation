@@ -3,7 +3,7 @@
 }
 
 .div-card{
-  border-block-color: rgba(var(--bs-dark-rgb),var(--bs-bg-opacity))t;
+  border-block-color: rgba(var(--bs-dark-rgb),var(--bs-bg-opacity));
   border-radius: 1rem;
 }
 

@@ -15,8 +15,12 @@ function Sidebar(props){
             navigate('/')
         }
     }
-
     
+    const handleLogout = () => {
+        localStorage.clear();
+        navigate('/')
+    }
+
     return(
         <React.Fragment>
             <div className="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark div_nav">
@@ -65,13 +69,13 @@ function Sidebar(props){
                 <hr/>
                 <div className="dropdown footer_sidebar">
                     <a href="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2"/>
+                        <i className="bi bi-person-circle"></i>
                         <strong>Perfil</strong>
                     </a>
                     <ul className="dropdown-menu dropdown-menu-dark text-small shadow">
                         <li><a className="dropdown-item" href="#">Ajustes de usuario</a></li>
                         <li><a className="dropdown-item" href="#">Cambiar Contraseña</a></li>
-                        <li><a className="dropdown-item" href="/">Cerrar Sesion <i class="bi bi-power"></i></a></li>
+                        <li><a className="dropdown-item" href="#" onClick={handleLogout}>Cerrar Sesion <i className="bi bi-power"></i></a></li>
                     </ul>
                 </div>
             </div>

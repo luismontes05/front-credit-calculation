@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import '../assetss/css/Login.css'
 import Logo from '../assetss/img/logocreditos.png'
 import Imglateral from '../assetss/img/img_login.jpg'
@@ -8,6 +8,10 @@ import  axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
+
+    useEffect(() => {
+        localStorage.clear();
+      }, []);
 
     const navigate = useNavigate();
 

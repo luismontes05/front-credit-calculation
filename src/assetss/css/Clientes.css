@@ -1,0 +1,37 @@
+
+/*.modal-body-formDataClient{
+    height: 70vh;
+}*/
+
+.div-tips .alert{
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 300px;
+}
+
+#btn-close-modal{
+    position: absolute;
+    right: 12px;
+    top:12px;
+}
+
+.table-list-references td{
+    padding: 2px;
+    margin: 0px;
+}
+
+.table-list-propertie td{
+    padding: 2px;
+    margin: 0px;
+}
+
+.breadcrumb-passed{
+    display: flex;
+    left: 12px;
+    position: absolute;
+    top:12px;
+}
+
+.breadcrumb-passed p{
+    padding-right: 3px;
+}

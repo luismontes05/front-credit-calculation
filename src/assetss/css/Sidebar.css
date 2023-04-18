@@ -1,17 +1,27 @@
-.col-sidebar{
-    padding-left: 0px;
-    padding-right: 0px;
-    flex: 0 0 auto;
-    width: 250px;
-}
 
-.div_nav{
-    height: 100vh;
-}
 
 i{
     padding-right: 10px;
     font-size: 20px;
 }
 
+.offcanvas{
+    width: 250px !important;
+}
+ 
+.navbar{
+    margin-bottom: 10px !important;
+}
 
+
+.img-nav{
+    height: 60px;
+}
+
+.nav-item{
+    padding-left: 10px;
+}
+
+.nav-item:hover{
+    background-color: #333333
+}

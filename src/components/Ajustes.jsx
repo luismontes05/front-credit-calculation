@@ -5,14 +5,11 @@ function Ajustes() {
     return(
 
         <React.Fragment>
-            <div className="container-fluid">
-                <div className="row align-items-start">
-                    <div className="col col-sidebar">
-                        <Sidebar modulo="ajustes"></Sidebar>
-                    </div>
-                    <div className="col col-modulo">
-                        contenido de ajustes
-                    </div>
+            <Sidebar modulo="clientes"/>
+            <div className='container-fluid'>
+                <div className='pb-2'>
+                    <i className="bi bi-gear fs-4"></i>
+                    <span className='fs-4'>Ajustes</span>
                 </div>
             </div>
         </React.Fragment>

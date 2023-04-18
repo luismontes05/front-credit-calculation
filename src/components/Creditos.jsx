@@ -3,16 +3,12 @@ import Sidebar from './Sidebar';
 function Creditos() {
 
     return(
-
         <React.Fragment>
-            <div className="container-fluid">
-                <div className="row align-items-start">
-                    <div className="col col-sidebar">
-                        <Sidebar modulo="creditos"></Sidebar>
-                    </div>
-                    <div className="col col-modulo">
-                        contenido de creditos
-                    </div>
+            <Sidebar modulo="clientes"/>
+            <div className='container-fluid'>
+                <div className='pb-2'>
+                    <i className="bi bi-cash-coin fs-4"></i>
+                    <span className='fs-4'>Creditos</span>
                 </div>
             </div>
         </React.Fragment>

@@ -2,8 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { alerta, formatearMoneda } from "../../services/utilities";
 import { validateEmail } from "../../services/validate";
 import swal from 'sweetalert';
-import axios from 'axios';
-import { Apiulr } from "../../services/apirest";
+import { saveClient, typeProperties, dataClient } from "../../services/Client"
 
 function FormDataClient() {
 
@@ -27,19 +26,14 @@ function FormDataClient() {
     const [list_porpertie, setListPropertie] = useState();
 
     useEffect(() => {
-        axios.get(
-            Apiulr+'client/type_properties',{
-                headers: {
-                'Authorization': 'Bearer '+localStorage.getItem("token")
-                }
+
+        typeProperties().then(response => {
+            if(response.status === 200){
+                setOpcionesSelectTypePropertie(response.data);
+            }else{
+                alerta('Error al cargar la lista de tipos de propiedades')
             }
-          )
-          .then(response => {
-            setOpcionesSelectTypePropertie(response.data);
-          })
-          .catch(error => {
-            alerta('Error al cargar la lista de tipos de propiedades')
-        });
+        })
     }, []);
   
     const [references_client, setReferencesClient] = useState({
@@ -300,16 +294,22 @@ function FormDataClient() {
                 alerta('Documento invalido','')
                 return
             }else if(client.expedition_date_document.length < 6){
-                alerta('Fecha de expedicion invalido','')
+                alerta('Fecha de expedicion invalida','')
                 return
             }else if(client.document_from.length < 3){
-                alerta('Lugar de expedicion','')
+                alerta('Lugar de expedicion invalido','')
                 return
             }else if(client.first_name.length < 3){
                 alerta('Nombre invalido','')
                 return
             }else if(client.last_name.length < 4){
                 alerta('Apellidos invalido','')
+                return
+            }else if(client.birth_city < 3){
+                alerta('Lugar de nacimiento ivalido','')
+                return
+            }else if(client.birth_date.length < 6){
+                alerta('Fecha de nacimiento invalida','')
                 return
             }
 
@@ -388,12 +388,10 @@ function FormDataClient() {
         .then((willDelete) => {
             if (willDelete) {
                 
-                axios.post(
-                    Apiulr+'client',
-                    client,
-                    {headers: {'Authorization': 'Bearer '+localStorage.getItem("token")}}
-                  )
-                  .then(response => {
+                saveClient(client).then(response => {
+
+                    console.log(response)
+
                     if(response.status == 201){
                         alerta('Se guardo la información de forma exitosa','','success')
                         setClient(baseClient)
@@ -403,12 +401,15 @@ function FormDataClient() {
                         setBtnSiguiente('btn btn-success')
                         setClassTips('container text-center')
                         setClassForm6('container d-none')
+                    }else{
+    
+                        if( response.response?.data){
+                            alerta(response.response.data.detail.message ?? response.response.data.detail)
+                        }else{
+                            alerta(response.message)
+                        }
                     }
                 })
-                .catch(error => {
-                      console.log(error)
-                    alerta(error.response.data.detail.message)
-                });
             }
         });
     }
@@ -427,7 +428,9 @@ function FormDataClient() {
                         <form className='formDataclient'>                            
                             <div className={class_tips}>
                                 <i className="bi bi-lightbulb text-secondary fs-1"></i>
-                                <h4 className='text-secondary'>Aquí hay algunos consejos a tener en cuenta para una mejor experiencia y manejo de la información.</h4>
+                                <h4 className='text-secondary'>
+                                    A continuación se presentan algunos criterios a tener en cuenta para una mejor experiencia y manejo de la información.
+                                </h4>
                                 <div className="div-tips d-flex justify-content-center pt-2">
                                     <div className="alert alert-primary" role="alert">
                                         <i className="bi bi-person-bounding-box"></i>

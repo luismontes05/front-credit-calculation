@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react";
 import '../assetss/css/Login.css'
 import Logo from '../assetss/img/logocreditos.png'
 import Imglateral from '../assetss/img/img_login.jpg'
-import { Apiulr } from "../services/apirest";
 import { validateEmail } from "../services/validate";
-import  axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { login }  from "../services/Login";
 
 function Login() {
 
@@ -44,10 +43,9 @@ function Login() {
         }
 
         setDsiabledBotton(true)
-
-        let url = Apiulr + 'login?email=' + username +'&password=' + password
-        axios.get(url)
-        .then( response => {
+        
+        login(username,password).then(response => {
+            
             if(response.status === 200){
                 setError(false)
                 setErrorMessage('')
@@ -55,19 +53,16 @@ function Login() {
                 navigate('/inicio');
             }else{
                 setError(true)
-                setErrorMessage(response.data.message)
+                if( response.response?.data){
+                    setErrorMessage(response.response.data.message ?? response.response.data.detail);
+                }else{
+                    setErrorMessage(response.message);
+                }
             }
 
-        }).catch( error =>{
-            setError(true);
-            if( error.response?.data){
-                setErrorMessage(error.response.data.message ?? error.response.data.detail);
-            }else{
-                setErrorMessage(error.message);
-            }
-        }).finally( () => {
             setDsiabledBotton(false)
-        } )
+        })
+    
     }
 
     return (

@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React  from "react";
 import './assetss/css/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
@@ -19,12 +19,12 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' exact element={<Login/>}></Route>
-          <Route path='/inicio' exact element={ true ? <Inicio modulo="inicio" /> : <Login/> }></Route>
-          <Route path='/clientes' exact element={ true ? <Clientes modulo="clientes" /> : <Login/> }></Route>
-          <Route path='/creditos' exact element={ true ? <Creditos modulo="creditos" /> : <Login/> }></Route>
-          <Route path='/informes' exact element={ true ? <Informes modulo="informes" /> : <Login/> }></Route>
-          <Route path='/ajustes' exact element={ true ?  <Ajustes modulo="ajustes" /> : <Login/> }></Route>
-          <Route path='/usuarios' exact element={ true ? <Usuarios modulo="Usuarios" /> : <Login/> }></Route>
+          <Route key="inicio" path='/inicio' exact element={ <Inicio modulo="inicio" />}></Route>
+          <Route key="clientes" path='/clientes' exact element={<Clientes modulo="clientes" />}></Route>
+          <Route key="creditos" path='/creditos' exact element={<Creditos modulo="creditos" />}></Route>
+          <Route key="informes" path='/informes' exact element={<Informes modulo="informes" />}></Route>
+          <Route key="ajustes" path='/ajustes' exact element={<Ajustes modulo="ajustes" />}></Route>
+          <Route key="usuarios" path='/usuarios' exact element={<Usuarios modulo="Usuarios" />}></Route>
         </Routes>
       </Router>
     </React.Fragment>

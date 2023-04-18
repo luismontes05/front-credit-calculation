@@ -5,14 +5,11 @@ function Usuarios() {
     return(
 
         <React.Fragment>
-            <div className="container-fluid">
-                <div className="row align-items-start">
-                    <div className="col col-sidebar">
-                        <Sidebar modulo="usuarios"></Sidebar>
-                    </div>
-                    <div className="col col-modulo">
-                        contenido de usuarios
-                    </div>
+            <Sidebar modulo="clientes"/>
+            <div className='container-fluid'>
+                <div className='pb-2'>
+                    <i className="bi bi-person-gear fs-4"></i>
+                    <span className='fs-4'>Usuarios</span>
                 </div>
             </div>
         </React.Fragment>

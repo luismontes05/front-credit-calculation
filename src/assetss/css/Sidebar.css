@@ -25,3 +25,7 @@ i{
 .nav-item:hover{
     background-color: #333333
 }
+
+.hstack{
+    padding-right: 50px;
+}

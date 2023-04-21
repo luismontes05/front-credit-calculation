@@ -3,11 +3,13 @@ import { alerta } from "../../services/utilities";
 import { dataClient } from "../../services/Client"
 import  avatar_gril from  "../../assetss/img/avatar_gril.png"
 import  avatar_men from  "../../assetss/img/avatar_men.png"
+import ViweClient from './ViweClient';
 
 function DataTableClient() {
 
     const [listClient, setListClient] = useState([]);
     const [filter, setFilter] = useState('');
+    const [idClient, setIdClient] = useState(false)
     
     useEffect(() => {
         
@@ -27,17 +29,18 @@ function DataTableClient() {
       });
 
 
+
     return (
         <React.Fragment>
             
-            <div className='row'>
-                <div className='col-sm-2'>
-                    <div className="input-group mb-3">
-                        <input type="text" className="form-control" placeholder="Buscar..." aria-label="Buscar" aria-describedby="basic-addon1" value={filter}
+            <div className='row mb-3'>
+                <div className='col-sm-3'>
+                    <div className="input-group">
+                        <input type="text" className="form-control form-control-sm" placeholder="Buscar..." aria-label="Buscar" aria-describedby="basic-addon1" value={filter}
                         onChange={(e) => setFilter(e.target.value)} />
                     </div>
                 </div>
-                <div className='col-sm-10 text-end'>
+                <div className='col-sm-9 text-end'>
                     <button className="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#ModalFormDataClient">Nuevo Cliente</button>
                 </div>
             </div>
@@ -77,6 +80,7 @@ function DataTableClient() {
                                         data-bs-target="#ModalViweClient" 
                                         class="link-info icon-link-hover link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover" 
                                         title="Ver informacion del cliente"
+                                        onClick={() => setIdClient(client.id)}
                                     >
                                         <i class="bi bi-eye"></i>
                                     </a>
@@ -86,6 +90,7 @@ function DataTableClient() {
                     </tbody>
                 </table>
             </div>
+            <ViweClient idClient={idClient}/>
         </React.Fragment>
     );
   }

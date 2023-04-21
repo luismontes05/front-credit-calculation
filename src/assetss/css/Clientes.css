@@ -1,5 +1,5 @@
 
-/*.modal-body-formDataClient{
+/*.modal-body-client{
     height: 70vh;
 }*/
 
@@ -54,5 +54,14 @@ thead {
   top: 0;
   background-color: #fff;
   z-index: 1;
+}
+
+.modal-body-viwe-client{
+    height: 100vh;
+}
+
+.formDataViweclient #last_name, #first_name{
+    font-weight: bold ;
+    text-transform: uppercase;
 }
 

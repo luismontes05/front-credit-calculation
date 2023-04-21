@@ -30,17 +30,17 @@ function Sidebar(props){
                 </button>
                 <div className="hstack gap-3">
                     <div className="text-center">
-                        <p className="text-white fs-6 m-0"><b>Capital Disponible</b></p>
+                        <p className="text-white fs-7 m-0"><b>Disponible</b></p>
                         <span className="badge text-bg-success fs-6">$10.000.000</span>
                     </div>
                     <div className="vr bg-white"></div>
                     <div className="text-center">
-                        <p className="text-white fs-6 m-0"><b>Capital en Prestamo</b></p>
+                        <p className="text-white fs-7 m-0"><b>Prestado</b></p>
                         <span className="badge text-bg-secondary fs-6">$10.000.000</span>
                     </div>
                     <div className="vr bg-white"></div>
                     <div className="text-center">
-                        <p className="text-white fs-6 m-0"><b>Intereses Generados</b></p>
+                        <p className="text-white fs-7 m-0"><b>Intereses</b></p>
                         <span className="badge text-bg-primary fs-6">$10.000.000</span>
                     </div>
                 </div>

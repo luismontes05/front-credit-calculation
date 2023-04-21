@@ -1,7 +1,10 @@
 import InstaceAxios  from "./Api";
 
-export const dataClient = async () => {
-    const result = await InstaceAxios.get('client')
+export const dataClient = async (id = false) => {
+
+    var method = id ? 'client?id=' + id : 'client'
+
+    const result = await InstaceAxios.get(method)
         .then(res => res)
         .catch(error => error)
     return result

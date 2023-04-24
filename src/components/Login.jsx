@@ -51,6 +51,7 @@ function Login() {
                 setErrorMessage('')
                 localStorage.setItem("token", response.data.token)
                 navigate('/inicio');
+                window.location.href = '/inicio';
             }else{
                 setError(true)
                 if( response.response?.data){

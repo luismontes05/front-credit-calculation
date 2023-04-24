@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import '../assetss/css/Sidebar.css'
 import { useNavigate } from 'react-router-dom';
-import Logo from '../assetss/img/logocreditos.png'
+import Swal  from 'sweetalert2';
 
 function Sidebar(props){
 
@@ -18,8 +18,21 @@ function Sidebar(props){
     }
     
     const handleLogout = () => {
-        localStorage.clear();
-        navigate('/')
+
+        Swal.fire({
+            title: '¿Cerrar sesion?',
+            text: "",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Si',
+            cancelButtonText: 'No'
+        }).then((result) => {
+                if (result.isConfirmed) {
+                    localStorage.clear();
+                    window.location.href = '/';
+                }
+        })
     }
 
     return(
@@ -45,8 +58,7 @@ function Sidebar(props){
                     </div>
                 </div>
 
-            
-                <div className="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+                <div className="offcanvas offcanvas-start text-bg-dark" tabIndex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
                     <div className="offcanvas-header">
                         <h5 className="offcanvas-title pt-2" id="offcanvasDarkNavbarLabel">Menu Principal</h5>
                         <button type="button" className="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>

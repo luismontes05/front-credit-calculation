@@ -1,15 +1,20 @@
 import React, {useState, useEffect} from 'react';
 import { dataClient } from "../../services/Client"
 import { alerta, formatearMoneda } from "../../services/utilities";
+import Swal  from 'sweetalert2';
+import { updateClient, typeProperties } from "../../services/Client"
+import { useNavigate } from 'react-router-dom';
 
 function ViweClient(props){
 
-    
     useEffect( () =>{
 
         setLoadingForm('d-none')
         setLoading('')
         
+        var collapse = document.getElementsByClassName('collapse')
+        for(var i = 1; i < collapse.length; i++ ){collapse[i].classList.remove('show')}
+
         dataClient(props.idClient).then(response => {
             if(response.status === 200){
                 setClient(response.data)
@@ -30,8 +35,8 @@ function ViweClient(props){
 
     const [loading, setLoading] = useState('')
     const [loadingform, setLoadingForm] = useState('d-none')
-
-    const [client, setClient] = useState([]);
+    const [client, setClient] = useState({});
+    const navigate = useNavigate();  
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -44,6 +49,37 @@ function ViweClient(props){
         setClient({ ...client, [name]: value });*/
     }
 
+
+    const handleUpdateClient = () =>{
+
+        Swal.fire({
+            title: '¿ Esta seguro de guardar la información del cliente ?',
+            text: "Si esta seguro presione el boton OK de lo contrario Cancelar",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Ok',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+
+            if (result.isConfirmed) {
+                updateClient(client).then(response => {
+
+                    if(response.status == 200){
+                        alerta('Se guardo la información de forma exitosa','','success')
+                    }else{
+                        if( response.response?.data){
+                            alerta(response.response.data.detail.message ?? response.response.data.detail)
+                        }else{
+                            alerta(response.message)
+                        }
+                    }
+                })
+            }
+        })
+
+    }
+
     return(
 
         <React.Fragment>
@@ -51,18 +87,18 @@ function ViweClient(props){
                 <div className="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
                     <div className="modal-content">
                         <div className="modal-body modal-body-viwe-client">
-                            <div class={`d-flex align-items-center ${loading}`}>
+                            <div className={`d-flex align-items-center ${loading}`}>
                                 <strong>Por favor espere...</strong>
-                                <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                                <div className="spinner-border ms-auto" role="status" aria-hidden="true"></div>
                             </div>
                             <form className={`formDataViweclient ${loadingform}`}>
-                                {client.status ? <span class="badge text-bg-success fs-6">Activo</span> : <span class="badge text-bg-danger fs-6">Inactivo</span>}
+                                {client.status ? <span className="badge text-bg-success fs-6">Activo</span> : <span className="badge text-bg-danger fs-6">Inactivo</span>}
                                 <div className="pt-4 info-personal ">
                                     <h5 className='text-secondary' data-bs-toggle="collapse" href="#collapse1" role="button" aria-expanded="true" aria-controls="collapse1">
                                         <i className="bi bi-file-person text-secondary fs-4"></i>
                                         Información Personal
                                     </h5>
-                                    <div class="collapse show " id="collapse1">
+                                    <div className="collapse show" id="collapse1">
                                         <div className='row'>
                                             <div className="col-md-3">
                                                 <label className="form-label" htmlFor="first_name">Nombres:</label>
@@ -128,11 +164,11 @@ function ViweClient(props){
                                     </div>
                                 </div>
                                 <div className="pt-3 info-contacto">
-                                    <h5 className='text-secondary' data-bs-toggle="collapse" href="#collapse2" role="button" aria-expanded="true" aria-controls="collapse2">
+                                    <h5 className='text-secondary' data-bs-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapse2">
                                         <i className="bi bi-geo-alt-fill text-secondary fs-4"></i>
                                         Información de contacto
                                     </h5>
-                                    <div class="collapse show " id="collapse2">
+                                    <div className="collapse show " id="collapse2">
                                         <div className='row'>
                                             <div className="col-md-3">
                                                 <label className="form-label" htmlFor="usuatelephone_number_1">Telefono:</label>
@@ -164,11 +200,11 @@ function ViweClient(props){
                                     </div>
                                 </div>
                                 <div className='pt-3 info-financiera'>
-                                    <h5 className='text-secondary' data-bs-toggle="collapse" href="#collapse3" role="button" aria-expanded="true" aria-controls="collapse3">
+                                    <h5 className='text-secondary' data-bs-toggle="collapse" href="#collapse3" role="button" aria-expanded="false" aria-controls="collapse3">
                                         <i className="bi bi-cash-coin text-secondary fs-4"></i>
                                         Información Financiera
                                     </h5>
-                                    <div class="collapse show " id="collapse3">
+                                    <div className="collapse" id="collapse3">
                                         <div className="row">
                                             <div className="col-md-2">
                                                 <label className="form-label" htmlFor="fixed_income_value">Ingresos fijos</label>
@@ -245,11 +281,11 @@ function ViweClient(props){
                                     </div>
                                 </div>
                                 <div className='pt-3 info-config-credit'>                                    
-                                    <h5 className='text-secondary' data-bs-toggle="collapse" href="#collapse4" role="button" aria-expanded="true" aria-controls="collapse4">
+                                    <h5 className='text-secondary' data-bs-toggle="collapse" href="#collapse4" role="button" aria-expanded="false" aria-controls="collapse4">
                                         <i className="bi bi-gear-fill text-secondary fs-4"></i>
                                         Configuración y aprobacion de creditos 
                                     </h5>
-                                    <div class="collapse show " id="collapse4">
+                                    <div className="collapse" id="collapse4">
                                         <div className='row'>
                                             <div className="col-md-2">
                                                 <label className="form-label" htmlFor="risk_level">Nivel de riesgo:</label>
@@ -320,7 +356,7 @@ function ViweClient(props){
                         </div>
                         <div className="modal-footer">
                             <button type="button" className='btn btn-secondary' data-bs-dismiss="modal">Cancelar</button>
-                            <button type="button" className='btn btn-primary'>Guardar Cliente</button>
+                            <button type="button" className='btn btn-primary' onClick={handleUpdateClient}>Guardar Cliente</button>
                         </div>
                     </div>
                 </div>

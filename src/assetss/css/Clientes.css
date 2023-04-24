@@ -56,12 +56,11 @@ thead {
   z-index: 1;
 }
 
-.modal-body-viwe-client{
+/*.modal-body-viwe-client{
     height: 100vh;
-}
+}*/
 
 .formDataViweclient #last_name, #first_name{
-    font-weight: bold ;
     text-transform: uppercase;
 }
 

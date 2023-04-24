@@ -1,10 +1,9 @@
 import React  from "react";
 import './assetss/css/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import Login from './components/Login';
 import Inicio from './components/Inicio';
-import Clientes from './components/Clientes';
+import Clientes from './components/Clientes/Clientes';
 import Creditos from './components/Creditos';
 import Informes from './components/Informes';
 import Ajustes from './components/Ajustes';

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './assetss/css/index.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import App from './App';
 
 // Se crea un elemento de la propiedad ReacDOMM obteniendo el contenedor donde se va renderizar 

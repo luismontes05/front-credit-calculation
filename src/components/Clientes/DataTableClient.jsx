@@ -10,8 +10,11 @@ function DataTableClient() {
     const [listClient, setListClient] = useState([]);
     const [filter, setFilter] = useState('');
     const [idClient, setIdClient] = useState(false)
+    const [loading, setLoading] = useState('')
     
     useEffect(() => {
+
+        setLoading('')
         
         dataClient().then(response => {
             if(response.status === 200){
@@ -21,7 +24,11 @@ function DataTableClient() {
             }
         }).catch(error =>{
             alerta('Error al cargar la lista de clientes', error.message)
-        })
+        }). finally(
+            setTimeout(() => {
+                setLoading('d-none')
+              }, 500)
+        )
     }, []);
 
     const filteredData = listClient.filter((item) => {
@@ -47,6 +54,12 @@ function DataTableClient() {
 
             <div className='table-container'>
                 <table className='table table-hover'>
+                    <caption className='pt-4'>
+                        <div className={`d-flex align-items-center ${loading}`}>
+                            <strong>Por favor espere...</strong>
+                            <div className="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                        </div>
+                    </caption>
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -65,24 +78,24 @@ function DataTableClient() {
                             <tr key={index}>
                                 <td>{client.id}</td>
                                 <td>
-                                    <img width="35" class="rounded-circle" src={client.sex == 'MASCULINO'? avatar_men : avatar_gril } alt="" />
+                                    <img width="35" className="rounded-circle" src={client.sex == 'MASCULINO'? avatar_men : avatar_gril } alt="" />
                                 </td>
                                 <td>{client.full_name}</td>
                                 <td>{client.type_document} {client.num_document}</td>
                                 <td>{client.email}</td>
                                 <td>{client.telephone_number_1}</td>
                                 <td>{client.last_update}</td>
-                                <td>{client.status ? <span class="badge text-bg-success">Activo</span> : <span class="badge text-bg-danger">Inactivo</span>}
+                                <td>{client.status ? <span className="badge text-bg-success">Activo</span> : <span className="badge text-bg-danger">Inactivo</span>}
                                 </td>
                                 <td>
                                     <a  href="#" 
                                         data-bs-toggle="modal" 
                                         data-bs-target="#ModalViweClient" 
-                                        class="link-info icon-link-hover link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover" 
+                                        className="link-info icon-link-hover link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover" 
                                         title="Ver informacion del cliente"
                                         onClick={() => setIdClient(client.id)}
                                     >
-                                        <i class="bi bi-eye"></i>
+                                        <i className="bi bi-eye"></i>
                                     </a>
                                 </td>
                             </tr>

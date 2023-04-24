@@ -390,8 +390,6 @@ function ModalNewClient() {
                 
                 saveClient(client).then(response => {
 
-                    console.log(response)
-
                     if(response.status == 201){
                         alerta('Se guardo la información de forma exitosa','','success')
                         setClient(baseClient)
@@ -461,7 +459,7 @@ function ModalNewClient() {
                                     <h4 className='text-secondary text-center pb-4'>Información Personal</h4>
                                     <div className='row'>
                                         <div className="col-md-3">
-                                            <label className="form-label" htmlFor="type_document">Tipo Doumento:</label>
+                                            <label className="form-label" htmlFor="type_document">Tipo Doumento: <span className='text-danger'>*</span></label>
                                             <select className="form-select form-control-md" name="type_document" value={client.type_document} onChange={handleInputChange}>
                                                 <option value="CC">Cedula</option>
                                                 <option value="NIT">NIT</option>
@@ -471,41 +469,41 @@ function ModalNewClient() {
                                             </select>
                                         </div>
                                         <div className="col-md-3">
-                                            <label className="form-label" htmlFor="num_document"># Documento:</label>
-                                            <input type="text" id="num_document" name="num_document" placeholder="Numero de documento" className="form-control form-control-md" value={client.num_document} onChange={handleInputChange} />
+                                            <label className="form-label" htmlFor="num_document"># Documento: <span className='text-danger'>*</span></label>
+                                            <input type="text" id="num_document_add" name="num_document" placeholder="Numero de documento" className="form-control form-control-md" value={client.num_document} onChange={handleInputChange} required />
                                         </div>
                                         <div className="col-md-3">
-                                            <label className="form-label" htmlFor="expedition_date_document">Fecha de expedicion:</label>
+                                            <label className="form-label" htmlFor="expedition_date_document">Fecha de expedicion: <span className='text-danger'>*</span></label>
                                             <input type="date" id="expedition_date_document" name="expedition_date_document" placeholder="Digite los apellidos del cliente" className="form-control form-control-md" value={client.expedition_date_document}onChange={handleInputChange} />
                                         </div>
                                         <div className="col-md-3">
-                                            <label className="form-label" htmlFor="document_from">Lugar de expedicion:</label>
+                                            <label className="form-label" htmlFor="document_from">Lugar de expedicion: <span className='text-danger'>*</span></label>
                                             <input type="text" id="document_from" name="document_from" placeholder="Ej: Bogota" className="form-control form-control-md" value={client.document_from} onChange={handleInputChange} />
                                         </div>
                                     </div>
                                     <br/>
                                     <div className='row'>
                                         <div className="col-md-3">
-                                            <label className="form-label" htmlFor="birth_city">Lugar de nacimiento:</label>
+                                            <label className="form-label" htmlFor="birth_city">Lugar de nacimiento: <span className='text-danger'>*</span></label>
                                             <input type="text" id="birth_city" name="birth_city" placeholder="Ej: Bogota" className="form-control form-control-md" value={client.birth_city} onChange={handleInputChange} />
                                         </div>                                    
                                         <div className="col-md-3">
-                                            <label className="form-label" htmlFor="birth_date">Fecha de nacimiento:</label>
+                                            <label className="form-label" htmlFor="birth_date">Fecha de nacimiento: <span className='text-danger'>*</span></label>
                                             <input type="date" id="birth_date" name="birth_date" placeholder="Digite los apellidos del cliente" className="form-control form-control-md" value={client.birth_date} onChange={handleInputChange} />
                                         </div>
                                         <div className="col-md-3">
-                                            <label className="form-label" htmlFor="first_name">Nombres:</label>
+                                            <label className="form-label" htmlFor="first_name">Nombres: <span className='text-danger'>*</span></label>
                                             <input type="text" id="first_name" name="first_name" placeholder="Digite el nombre del cliente" className="form-control form-control-md" value={client.first_name} onChange={handleInputChange} />
                                         </div>
                                         <div className="col-md-3">
-                                            <label className="form-label" htmlFor="last_name">Apellidos:</label>
+                                            <label className="form-label" htmlFor="last_name">Apellidos: <span className='text-danger'>*</span></label>
                                             <input type="text" id="last_name" name="last_name" placeholder="Digite los apellidos del cliente" className="form-control form-control-md" value={client.last_name} onChange={handleInputChange} />
                                         </div>
                                     </div>
                                     <br/>
                                     <div className="row">
                                         <div className="col-md-3">
-                                            <label className="form-label" htmlFor="sex">Sexo:</label>
+                                            <label className="form-label" htmlFor="sex">Sexo: <span className='text-danger'>*</span></label>
                                             <select className="form-select form-control-md" name="sex" value={client.sex} onChange={handleInputChange}>
                                                 <option value="MASCULINO">MASCULINO</option>
                                                 <option value="FEMENINO">FEMENINO</option>
@@ -513,7 +511,7 @@ function ModalNewClient() {
                                             </select>
                                         </div>
                                         <div className="col-md-3">
-                                            <label className="form-label" htmlFor="civil_status">Estado Civil:</label>
+                                            <label className="form-label" htmlFor="civil_status">Estado Civil: <span className='text-danger'>*</span></label>
                                             <select className="form-select form-control-md" name="civil_status" value={client.civil_status} onChange={handleInputChange}>
                                                 <option value="SOLTERO">SOLTERO</option>
                                                 <option value="CASADO">CASADO</option>
@@ -533,7 +531,7 @@ function ModalNewClient() {
 
                                     <div className='row'>
                                         <div className="col-md-6">
-                                            <label className="form-label" htmlFor="usuatelephone_number_1">Telefono:</label>
+                                            <label className="form-label" htmlFor="usuatelephone_number_1">Telefono: <span className='text-danger'>*</span></label>
                                             <input type="number" id="telephone_number_1" name="telephone_number_1" placeholder="Telefono celular" className="form-control form-control-md" maxLength="10" value={client.telephone_number_1} onChange={handleInputChange} />
                                         </div>
                                         <div className="col-md-6">
@@ -544,18 +542,18 @@ function ModalNewClient() {
                                     <br></br>
                                     <div className="row">
                                         <div className="col-md-6">
-                                            <label className="form-label" htmlFor="email">Correo electronico:</label>
+                                            <label className="form-label" htmlFor="email">Correo electronico: <span className='text-danger'>*</span></label>
                                             <input type="text" id="email" name="email" placeholder="ejemplo@dominio.com" className="form-control form-control-md" value={client.email} onChange={handleInputChange} />
                                         </div>
                                         <div className="col-md-6">
-                                            <label className="form-label" htmlFor="city_residence">Ciudad de residencia:</label>
+                                            <label className="form-label" htmlFor="city_residence">Ciudad de residencia: <span className='text-danger'>*</span></label>
                                             <input type="text" id="city_residence" name="city_residence" placeholder="Ej: Bogota" className="form-control form-control-md" value={client.city_residence} onChange={handleInputChange} />
                                         </div>
                                     </div>
                                     <br></br>
                                     <div className="row">
                                         <div className="col-md-6">
-                                            <label className="form-label" htmlFor="address_1">Direccion:</label>
+                                            <label className="form-label" htmlFor="address_1">Direccion: <span className='text-danger'>*</span></label>
                                             <input type="text" id="address_1" name="address_1" placeholder="Calle 14 Cra 10 " className="form-control form-control-md" value={client.address_1} onChange={handleInputChange} />
                                         </div> 
                                         <div className="col-md-6">

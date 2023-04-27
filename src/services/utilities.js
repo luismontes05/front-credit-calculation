@@ -1,13 +1,29 @@
 
-import swal from 'sweetalert';
+import Swal  from 'sweetalert2';
 
 export const alerta = (title='! Alerta ¡', text='Se presento un error', icon='error') =>{
-    swal({
-        title: title,
-        text: text,
-        icon: icon,
-        button: "Aceptar",
-      });
+  Swal.fire(
+    title,
+    text,
+    icon
+  )
+}
+
+export const toast = (title='! Alerta ¡', text='Se presento un error', icon='error') =>{
+
+  Swal.fire({
+    toast: true,
+    position: 'bottom-right',
+    title: title,
+    html: '<p style="font-size:15px">' + text + '</p>',
+    icon: icon,
+    showCancelButton: false,
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    width: 400
+});
+
 }
 
 

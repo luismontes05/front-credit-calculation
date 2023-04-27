@@ -1,41 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { alerta } from "../../services/utilities";
-import { dataClient } from "../../services/Client"
+import { connect } from 'react-redux';
 import  avatar_gril from  "../../assetss/img/avatar_gril.png"
 import  avatar_men from  "../../assetss/img/avatar_men.png"
 import ViweClient from './ViweClient';
 
-function DataTableClient() {
+function DataTableClient(props) {
 
-    const [listClient, setListClient] = useState([]);
     const [filter, setFilter] = useState('');
     const [idClient, setIdClient] = useState(false)
-    const [loading, setLoading] = useState('')
-    
-    useEffect(() => {
-
-        setLoading('')
-        
-        dataClient().then(response => {
-            if(response.status === 200){
-                setListClient(response.data);
-            }else{
-                alerta('Error al cargar la lista de clientes', response.message)
-            }
-        }).catch(error =>{
-            alerta('Error al cargar la lista de clientes', error.message)
-        }). finally(
-            setTimeout(() => {
-                setLoading('d-none')
-              }, 500)
-        )
-    }, []);
-
-    const filteredData = listClient.filter((item) => {
+    const filteredData = props.dataClients.filter((item) => {
         return item.full_name.toLowerCase().includes(filter.toLowerCase());
-      });
-
-
+    });
 
     return (
         <React.Fragment>
@@ -55,7 +30,7 @@ function DataTableClient() {
             <div className='table-container'>
                 <table className='table table-hover'>
                     <caption className='pt-4'>
-                        <div className={`d-flex align-items-center ${loading}`}>
+                        <div className={`d-flex align-items-center ${props.loading}`}>
                             <strong>Por favor espere...</strong>
                             <div className="spinner-border ms-auto" role="status" aria-hidden="true"></div>
                         </div>
@@ -107,5 +82,13 @@ function DataTableClient() {
         </React.Fragment>
     );
   }
+
+  const mapSateToProps = state => {
+
+    return {
+        dataClients: state.dataClients
+    }
+
+  }
   
-  export default DataTableClient;
+  export default  connect(mapSateToProps, null)(DataTableClient);

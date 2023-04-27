@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import { reducer } from './reducers/index'
 import './assetss/css/index.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
@@ -13,10 +16,19 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 // Se ejecuta la funcion render del objetro creado anteriormente y se le pasada <React.StrictMode> que es una
 // Etiqueta propia de REACT pero podria ser un <div> o cualquier contendero y dentro se pasa el componente <APP />
 // que contiene nuestros componentes principales o inicio de la aplicacion
+
+
+
+const initialState = {
+  "dataClients": []
+}
+
+const store = createStore(reducer, initialState)
+
 root.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>
+  </Provider>
 );
 
 

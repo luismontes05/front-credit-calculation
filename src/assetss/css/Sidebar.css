@@ -1,31 +1,14 @@
 
-
-i{
-    padding-right: 10px;
-    font-size: 20px;
-}
-
-.offcanvas{
-    width: 250px !important;
-}
- 
-.navbar{
-    margin-bottom: 10px !important;
-}
-
-
-.img-nav{
-    height: 60px;
-}
-
-.nav-item{
-    padding-left: 10px;
-}
-
-.nav-item:hover{
-    background-color: #333333
-}
-
 .hstack{
-    padding-right: 50px;
+    padding-right: 80px;
+}
+
+.offcanvas-end{
+    width: 250px !important;
+    color: white;
+    height: 300px;
+}
+
+.dropdown-menu{
+    left: -21px !important;
 }

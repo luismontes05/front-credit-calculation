@@ -8,7 +8,9 @@ import Creditos from './components/Creditos';
 import Informes from './components/Informes';
 import Ajustes from './components/Ajustes';
 import Usuarios from './components/Usuarios';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import NotFound from "./components/NotFound";
+import { BrowserRouter as Router, Routes, Route,  } from 'react-router-dom'
+import Footer from "./components/Footer";
 
 
 function App() {
@@ -23,8 +25,10 @@ function App() {
           <Route key="creditos" path='/creditos' exact element={<Creditos modulo="creditos" />}></Route>
           <Route key="informes" path='/informes' exact element={<Informes modulo="informes" />}></Route>
           <Route key="ajustes" path='/ajustes' exact element={<Ajustes modulo="ajustes" />}></Route>
-          <Route key="usuarios" path='/usuarios' exact element={<Usuarios modulo="Usuarios" />}></Route>
+          <Route key="usuarios" path='/usuarios' exact element={<Usuarios modulo="usuarios" />}></Route>
+          <Route key="notFound" path="*" element={<NotFound></NotFound>}></Route>
         </Routes>
+        <Footer></Footer>
       </Router>
     </React.Fragment>
   );

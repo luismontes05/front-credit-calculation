@@ -399,6 +399,7 @@ function ModalNewClient() {
                         setBtnSiguiente('btn btn-success')
                         setClassTips('container text-center')
                         setClassForm6('container d-none')
+                        
                     }else{
     
                         if( response.response?.data){

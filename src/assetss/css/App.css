@@ -1,0 +1,10 @@
+.container-modulos{
+    margin-top: 90px;
+    padding-top: 20px;
+    margin-bottom: 50px;
+    background: white;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    min-height: 70vh;
+}
+
